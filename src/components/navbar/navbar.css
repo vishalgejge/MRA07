@@ -1,0 +1,144 @@
+:root {
+  --primary: #001022;
+  --secondary: #0ab39c;
+  --hover: #ffc108;
+}
+
+* {
+  padding: 0%;
+  margin: 0%;
+  box-sizing: border-box;
+}
+
+.parent {
+  background-color: var(--primary);
+  height: 8vh;
+  /* width: 100%; */
+  padding-top: 5px;
+}
+.parent .child {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  margin: auto;
+}
+.child .left-side {
+  display: flex;
+  justify-content: space-around;
+  color: white;
+  gap: 4px;
+  cursor: pointer;
+}
+.child .left-side:hover {
+  color: var(--hover);
+}
+.child .middle-side {
+  color: var(--secondary);
+}
+.child .socials {
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  gap: 8px;
+  padding-top: 10px;
+}
+.child .socials div {
+  cursor: pointer;
+}
+.child .socials div:hover {
+  color: var(--hover);
+}
+
+@media screen and (max-width: 320px) {
+  .parent {
+    height: 20vh;
+  }
+}
+@media screen and (max-width: 420px) {
+  .parent {
+    height: 18vh;
+    display: flex;
+    align-items: center;
+  }
+  .parent .child {
+    flex-direction: column;
+    width: 80%;
+    margin: auto;
+    justify-content: center;
+  }
+  .child .left-side {
+    justify-content: center;
+    gap: 4px;
+  }
+  .child .middle-side {
+    text-align: center;
+  }
+  .child .socials {
+    justify-content: center;
+    gap: 8px;
+  }
+}
+
+
+@media only screen and (max-width: 540px) {
+  .parent {
+    height: auto;
+    padding-top: 10px;
+  }
+  .parent .child {
+    flex-direction: column;
+    width: 80%;
+    margin: auto;
+    justify-content: center;
+  }
+  .child .left-side {
+    justify-content: center;
+    gap: 4px;
+  }
+  .child .middle-side {
+    text-align: center;
+  }
+  .child .socials {
+    justify-content: center;
+    gap: 8px;
+  }
+} 
+
+@media screen and (min-width: 575px) and (max-width: 768px) {
+  .parent {
+    height: 10vh;
+  }
+  .parent .child {
+    flex-direction: column;
+    width: 80%;
+    margin: auto;
+    justify-content: center;
+  }
+  .child .left-side {
+    justify-content: center;
+    gap: 4px;
+  }
+  .child .middle-side {
+    text-align: center;
+  }
+  .child .socials {
+    justify-content: center;
+    gap: 8px;
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 991px) {
+  .parent {
+    height: 5vh;
+    display: flex;
+    align-items: center;
+    padding-top: 5px;
+  }
+}
+@media (min-width: 1024px) {
+  .parent {
+    height: 6vh;
+    display: flex;
+    align-items: center;
+  }
+}

@@ -1,0 +1,145 @@
+import React, { Fragment, useState } from 'react';
+import { Dialog, Transition } from '@headlessui/react';
+import Signup from '../../pages/registration/Signup';
+import heroImage from '../images/homeImage.jpg'; // Adjust the path accordingly
+import ProductCard from '../../components/productCard/ProductCard';
+import { doc, query, collection, getDoc, getDocs } from 'firebase/firestore';
+import { fireDB } from '../../firebase/firebaseConfig';
+
+// const pincodesCollectionRef = collection(fireDB, 'admins');
+
+function HeroSection() {
+  const [searchQuery, setSearchQuery] = useState('');
+  const [pinCodeArray, setPinCodeArray] = useState([]);
+  const [signupOpen, setSignupOpen] = useState(false);
+
+  const toggleSignup = () => {
+    setSignupOpen(!signupOpen);
+  };
+
+  const handleSearch = async () => {
+    try {
+      const leadActivityDocRef = doc(fireDB, 'leadActivity', 'm8mTyrerAF9YXUfu1WcC');
+      const leadActivitySnapshot = await getDoc(leadActivityDocRef);
+      const { activity, actid } = leadActivitySnapshot.data();
+
+      if (activity && actid === 1991) {
+        console.log('fetched');
+        const pincodesCollectionRef = collection(fireDB, 'admins');
+
+        const pincodesQuery = query(pincodesCollectionRef);
+        const pincodesSnapshot = await getDocs(pincodesQuery);
+
+        const pincodesData = [];
+        pincodesSnapshot.forEach((doc) => {
+          pincodesData.push({ id: doc.id, ...doc.data() });
+        });
+
+        const filteredPincodes = pincodesData.filter((item) => {
+          console.log('item.pincode:', item.pincode);
+          console.log('searchQuery:', searchQuery);
+          return item.pincode && item.pincode.includes(searchQuery);
+        });
+        if (filteredPincodes.length > 0) {
+          // Set the pincode array using setPinCodeArray
+          setPinCodeArray(filteredPincodes);
+      
+          // Optionally, you can perform additional actions based on the filtered pincodes
+          // For example, you might want to update the UI or trigger some other logic
+        } else {
+          // Handle the case where no matching pincodes were found
+          console.log('No matching pincodes found');
+        }
+        console.log('Filtered Pincodes:', filteredPincodes);
+        console.log('Alert will be shown next');
+        alert(`Searching for: ${searchQuery}`);
+        console.log('After alert');
+        
+
+        // alert(`Searching for: ${searchQuery}`);
+      } else {
+        console.log('false fetched');
+        setSignupOpen(true);
+      }
+    } catch (error) {
+      console.error('Error checking LeadActivity document:', error);
+    }
+  };
+
+  return (
+    <>
+    <div className="relative">
+      <img src={heroImage} alt="Description of the image" className="sm:h-96 w-full object-cover md:h-3/2" />
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center text-white">
+        <h1 className="text-sm sm:text-lg md:text-xl lg:text-2xl font-bold mb-2 sm:mb-3 banner-bg-slider-title">
+          Rental Agreements Made Easy
+        </h1>
+        <span className="text-xs sm:text-sm md:text-base lg:text-lg block mb-3 sm:mb-4 banner-bg-slider-sub-title">
+          Find the right agent to register your e-rental agreement online.
+        </span>
+        <div className="search mt-3 sm:mt-4 m-10">
+          <input
+            type="text"
+            id="zipCode"
+            placeholder="Search for agreement partner by Zip Code"
+            className="border-0 px-3 text-black py-2 mb-2 w-full sm:w-80 sm:mb-0"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+          <button
+            onClick={handleSearch}
+            className="rounded bg-blue-500 text-white px-4 py-2 inline-block"
+          >
+            Search
+          </button>
+        </div>
+      </div>
+      <Transition.Root show={signupOpen} as={Fragment}>
+        <Dialog
+          as="div"
+          className="fixed inset-0 z-50 overflow-y-auto"
+          onClose={toggleSignup}
+        >
+          <div className="flex items-center justify-center min-h-screen p-4">
+            <Transition.Child
+              as={Fragment}
+              enter="ease-out duration-300"
+              enterFrom="opacity-0"
+              enterTo="opacity-100"
+              leave="ease-in duration-200"
+              leaveFrom="opacity-100"
+              leaveTo="opacity-0"
+            >
+              <Dialog.Overlay className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+            </Transition.Child>
+
+            <Transition.Child
+              as={Fragment}
+              enter="ease-out duration-300"
+              enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+              enterTo="opacity-100 translate-y-0 sm:scale-100"
+              leave="ease-in duration-200"
+              leaveFrom="opacity-100 translate-y-0 sm:scale-100"
+              leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+            >
+              <div className="bg-white rounded-lg p-6 w-full max-w-md">
+                <Signup onClose={toggleSignup} /> {/* Pass onClose function to close the modal */}
+              </div>
+            </Transition.Child>
+          </div>
+        </Dialog>
+      </Transition.Root>
+      
+    </div>
+    {pinCodeArray.length > 0 && (
+  <>
+    {console.log('Array ->', pinCodeArray)}
+    <ProductCard pinCodeArray={pinCodeArray} />
+  </>
+)}
+
+    </ >
+  );
+}
+
+<!-- export default HeroSection; -->

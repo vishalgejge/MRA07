@@ -1,0 +1,109 @@
+:root {
+  --primary: #001022;
+  --secondary: #0ab39c;
+  --hover: #ffc108;
+}
+* {
+  padding: 0%;
+  margin: 0%;
+  box-sizing: border-box;
+}
+.main-track-container {
+  position: relative;
+  height: 70vh;
+  margin-top: 2rem;
+}
+.outer-track-container {
+  width: 30%;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+  position: absolute;
+  /* background-color: var(--primary); */
+  border: 0.1px solid #dddada;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+.inner-track-container {
+  width: 95%;
+  display: flex;
+  justify-content: center;
+  padding: 1.3rem 4rem;
+
+  background: #fafafa;
+  padding: 20px;
+  margin: 10px auto;
+}
+.outer-track-container:hover {
+  background-color: #001022;
+}
+.outer-track-container:hover .inner-track-title,
+.outer-track-container:hover
+  .inner-track-container
+  .outer-track-container:hover
+  .inner-track-content
+  .icon {
+  color: white;
+}
+.outer-track-container:hover .inner-track-container {
+  background-color: #001022;
+}
+
+.track-content {
+  padding: 20px;
+  text-align: center;
+}
+.track-content .inner-track-title {
+  color: var(--primary);
+  font-size: 18px;
+  margin-bottom: 1rem !important;
+  font-weight: 400;
+  margin-top: 0;
+  font-weight: 600;
+  text-transform: capitalize;
+  line-height: 1.2;
+}
+.track-content .inner-track-content {
+  font-weight: 400;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+  font-style: normal;
+  font-size: 14px;
+  color: #969696;
+}
+
+@media only screen and (max-width: 600px) {
+  .main-track-container {
+    height: 60vh;
+  }
+  .outer-track-container {
+    width: 100%;
+  }
+  .track-content .inner-track-title {
+    font-size: 17px;
+  }
+  .track-content .inner-track-content {
+    font-size: 13px;
+  }
+}
+@media only screen and (min-width: 600px) {
+  .outer-track-container {
+    width: 95%;
+  }
+  .main-track-container {
+    height: 50vh;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .outer-track-container {
+    width: 50%;
+  }
+}
+@media only screen and (min-width: 992px) {
+  .main-track-container {
+    height: 70vh;
+  }
+  .outer-track-container {
+    width: 30%;
+  }
+}

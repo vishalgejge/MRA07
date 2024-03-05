@@ -1,0 +1,134 @@
+:root {
+  --primary: #001022;
+  --secondary: #0ab39c;
+  --hover: #ffc108;
+}
+* {
+  padding: 0%;
+  margin: 0%;
+  box-sizing: border-box;
+}
+
+.hero-body {
+  height: 100vh;
+  position: relative;
+ 
+}
+.hero-content {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+}
+.hero-content h1 {
+  margin-top: 0;
+  font-weight: 600;
+  text-transform: capitalize;
+  font-size: 42px;
+  color: white;
+}
+.hero-content .sub-content {
+  font-size: 18px;
+  display: block;
+  margin-bottom: 30px;
+  color: white;
+  /* margin: 1rem; */
+}
+.search {
+  width: 100%;
+  margin: auto;
+  position: relative;
+  height: 70px;
+}
+.search input {
+  padding-left: 30px;
+  padding-right: 130px;
+  height: 70px;
+}
+.search form-control {
+  border: 1px solid #eeeeee;
+  padding: 10px 20px;
+  box-shadow: none;
+  font-size: 14px;
+  font-weight: 600;
+  color: #001935;
+  border-radius: 3px;
+  background-clip: inherit !important;
+}
+.search:focus {
+  outline: none;
+  border: none;
+}
+.search button {
+  position: absolute;
+  right: 0;
+  top: 0;
+  background: #ffc108;
+  color: #fff;
+  padding: 18px 30px;
+  cursor: pointer;
+  margin: 6px;
+  border-radius: 3px;
+}
+
+@media only screen and (max-width: 600px) {
+  .hero-body {
+    height: 100vh;
+    position: relative;
+  }
+  .hero-body .hero-img {
+    height: 100%;
+    object-fit: cover;
+  }
+  .hero-content {
+    position: absolute;
+    width: 95%;
+  }
+  .hero-content h1 {
+    font-size: 26px;
+    color: white;
+    text-align: center;
+  }
+  .hero-content .sub-content {
+    text-align: center;
+  }
+}
+@media only screen and (min-width: 600px) {
+  .hero-body {
+    height: 525px;
+    position: relative;
+  }
+  .hero-content {
+    position: absolute;
+    width: 90%;
+    margin: auto;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .hero-body {
+    height: 500px;
+    position: relative;
+  }
+  .hero-content {
+    position: absolute;
+    width: 90%;
+    margin: auto;
+    text-align: center;
+  }
+}
+@media only screen and (min-width: 992px) {
+  .hero-body {
+    height: 100vh;
+    position: relative;
+  }
+  .hero-content {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    width: 55%;
+  }
+}
+@media only screen and (min-width: 1200px) {
+}

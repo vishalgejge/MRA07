@@ -1,0 +1,77 @@
+:root {
+  --primary: #001022;
+  --secondary: #0ab39c;
+  --hover: #ffc108;
+}
+* {
+  padding: 0%;
+  margin: 0%;
+  box-sizing: border-box;
+}
+.three-section {
+  width: 90%;
+  margin: auto;
+  padding-top: 8rem;
+  padding-bottom: 4rem;
+}
+.three-section .three-head {
+  color: var(--primary);
+  font-size: 26px;
+  margin-top: 0;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+.three-section .three-content {
+  display: grid;
+  gap: 3rem;
+  padding-top: 4rem;
+  text-align: center;
+  grid-template-columns: repeat(3, 1fr);
+}
+.three-content .first-content,
+.three-content .second-content,
+.three-content .third-content {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 40%;
+  text-align: center;
+}
+.three-content .first-content h2,
+.three-content .second-content h2,
+.three-content .third-content h2 {
+  margin-top: 0;
+  font-weight: 600;
+  text-transform: capitalize;
+  margin-bottom: 1.8rem;
+  color: var(--primary);
+  font-size: 18px;
+}
+@media only screen and (max-width: 600px) {
+  .three-section {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+  .three-section .three-content {
+    grid-template-columns: 1fr;
+  }
+}
+@media only screen and (min-width: 600px) {
+  .three-section {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+  .three-section .three-content {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .three-section .three-content {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media only screen and (min-width: 1200px) {
+  .three-section .three-content {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
